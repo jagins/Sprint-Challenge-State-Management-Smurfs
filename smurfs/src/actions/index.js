@@ -9,7 +9,20 @@ export const getSmurfs = () => dispatch =>
     .then(res => {
         dispatch({type: 'SUCCESS', payload: res.data})
     })
-    .catch(err => {
-        dispatch({type: 'ERROR'})
+    .catch(err => dispatch({type: 'ERROR', payload: err.response}));
+}
+
+export const addSmurfs = (name, age, height) => dispatch =>
+{
+    dispatch({type: 'ADD_SMURFS'})
+
+    axios.post('http://localhost:3333/smurfs', {
+        name: name,
+        age: age,
+        height: height,
     })
+    .then(res =>{
+        dispatch({type: 'SUCCESS', payload: res.data});
+    })
+    .catch(err => dispatch({type: 'ERROR', payload: err.response}));
 }

@@ -3,7 +3,8 @@
 const initalState = {
     isLoading: false,
     smurfArray: null,
-    error: ''
+    error: '',
+    begin: false
 };
 
 export const reducer = (state = initalState, action) =>
@@ -13,7 +14,8 @@ export const reducer = (state = initalState, action) =>
         case 'GET_SMURFS':
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                begin: true
             }
         case 'SUCCESS':
             return {
@@ -26,6 +28,11 @@ export const reducer = (state = initalState, action) =>
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }
+        case 'ADD_SMURFS':
+            return{
+                ...state,
+                isLoading: true
             }
         default: 
             return state;
